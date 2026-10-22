@@ -108,12 +108,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeResponse updateEmployee(EmployeeRequest request, Long employeeId) {
-        Employee employeeToBeSaved = employeeRepository.findByIdForUpdate(employeeId).
-                orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " not found"));
-
-        employeeMapper.updateEmployee(request,  employeeToBeSaved);
-
         return transactionTemplate.execute(status -> {
+            Employee employeeToBeSaved = employeeRepository.findByIdForUpdate(employeeId).
+                    orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " not found"));
+
+            employeeMapper.updateEmployee(request,  employeeToBeSaved);
+
             Employee savedEmployee = employeeRepository.save(employeeToBeSaved);
 
             EmployeeAudit audit = new EmployeeAudit();

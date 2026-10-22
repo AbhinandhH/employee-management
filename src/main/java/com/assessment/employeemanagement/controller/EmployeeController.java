@@ -41,9 +41,9 @@ public class EmployeeController {
 
     @PutMapping("/update/{id}")
     @Tag(name = "PUT APIs")
-    public ResponseEntity<EmployeeResponse> updateEmployee(@Valid @RequestBody EmployeeRequest request, @PathVariable Long id) {
+    public ResponseEntity<EmployeeResponse> updateEmployee(@Valid @RequestBody EmployeeRequest request, @PathVariable("id") Long id) {
         EmployeeResponse response = employeeService.updateEmployee(request, id);
-        return  ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @GetMapping("/list")
@@ -63,7 +63,7 @@ public class EmployeeController {
 
     @DeleteMapping("/delete/{id}")
     @Tag(name = "DELETE APIs")
-    public ResponseEntity<EmployeeResponse> deleteEmployee(@PathVariable Long id) {
+    public ResponseEntity<EmployeeResponse> deleteEmployee(@PathVariable("id") Long id) {
         EmployeeResponse response = employeeService.deleteEmployee(id);
         return  ResponseEntity.status(HttpStatus.OK).body(response);
     }

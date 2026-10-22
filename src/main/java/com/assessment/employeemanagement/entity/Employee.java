@@ -35,7 +35,7 @@ public class Employee {
     private String phoneNumber;
 
     @Column(nullable = false, name = "AGE")
-    private int age;
+    private Integer age;
 
     @Column(nullable = false, name = "STATUS")
     @Enumerated(EnumType.STRING)
