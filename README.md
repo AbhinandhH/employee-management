@@ -101,7 +101,7 @@ Base URL: `http://localhost:8080/api/employee`
 | PUT | `/update/{id}` | Update an employee | 200 OK |
 | GET | `/list` | Retrieve all employees | 200 OK |
 | GET | `/pageablelist` | Retrieve employees with filtering, pagination, and sorting | 200 OK |
-| DELETE | `/{id}` | Delete an employee | 200 OK |
+| DELETE | `/delete/{id}` | Delete an employee | 200 OK |
 
 ## 7. Sample API Requests
 
