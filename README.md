@@ -40,25 +40,25 @@ Install the following before running the application:
 
 - Java JDK compatible with the project
 - Maven or the Maven Wrapper included in the repository
-- Oracle Database or MySQL, depending on the configured database
+- MySQL
 
 ## 5. Setup Instructions
 
 ### Step 1: Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd <YOUR_PROJECT_DIRECTORY>
+git clone <https://github.com/AbhinandhH/employee-management.git>
+cd <employee-management>
 ```
 
 ### Step 2: Configure the database
 
-Update `src/main/resources/application.properties` with your database connection details.
+Update `.env` with your database connection details.
 
 Example for MySQL:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/employee_test_db
+spring.datasource.url=${DB_URL}/employee_test_db
 spring.datasource.username=${DB_USERNAME}
 spring.datasource.password=${DB_PASSWORD}
 
@@ -68,7 +68,7 @@ spring.jpa.show-sql=false
 
 Use the appropriate JDBC URL and driver for Oracle if your project uses Oracle Database.
 
-Set the `DB_USERNAME` and `DB_PASSWORD` environment variables before starting the application.
+Set the `DB_USERNAME`,`DB_PASSWORD` and `DB_URL` environment variables before starting the application.
 
 **Note:** The configuration above is an example. Use the actual database settings and schema-management strategy configured in your project.
 
@@ -300,8 +300,6 @@ src/main/java/com/assessment/employeemanagement/
 ├── exception/
 └── config/
 ```
-
-The package structure above is illustrative. Adjust it to reflect the actual directories in your repository.
 
 ## 13. Author
 
