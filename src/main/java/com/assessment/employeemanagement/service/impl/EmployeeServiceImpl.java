@@ -129,10 +129,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeResponse deleteEmployee(Long employeeId) {
-        Employee employeeGoingToBeDeleted = employeeRepository.findByIdForUpdate(employeeId).
-                orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " not found"));
-
         return transactionTemplate.execute(status -> {
+            Employee employeeGoingToBeDeleted = employeeRepository.findByIdForUpdate(employeeId).
+                    orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " not found"));
             employeeRepository.delete(employeeGoingToBeDeleted);
 
             EmployeeAudit audit = new EmployeeAudit();
