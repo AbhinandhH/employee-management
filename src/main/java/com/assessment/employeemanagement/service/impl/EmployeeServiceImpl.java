@@ -9,6 +9,7 @@ import com.assessment.employeemanagement.enums.AuditAction;
 import com.assessment.employeemanagement.enums.Status;
 import com.assessment.employeemanagement.exception.EmailExistsException;
 import com.assessment.employeemanagement.exception.EmployeeNotFoundException;
+import com.assessment.employeemanagement.exception.PhoneNumberExistException;
 import com.assessment.employeemanagement.mapper.EmployeeMapper;
 import com.assessment.employeemanagement.repository.EmployeeAuditRepository;
 import com.assessment.employeemanagement.repository.EmployeeRepository;
@@ -49,7 +50,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmailExistsException("Email already exists '" +  request.email() + "'");
         } else if(employeeRepository.existsByPhoneNumber(request.phoneNumber())) {
             log.info("Employee with phoneNumber {} already exists", request.email());
-            throw new EmailExistsException("Phone Number already exists '" +  request.phoneNumber() + "'");
+            throw new PhoneNumberExistException("Phone Number already exists '" +  request.phoneNumber() + "'");
         }
         Employee employeeToBeSaved = employeeBuilder.name(request.name())
                 .email(request.email())
