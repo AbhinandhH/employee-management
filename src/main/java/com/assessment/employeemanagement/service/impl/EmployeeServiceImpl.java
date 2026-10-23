@@ -1,6 +1,7 @@
 package com.assessment.employeemanagement.service.impl;
 
 import com.assessment.employeemanagement.dto.request.EmployeeRequest;
+import com.assessment.employeemanagement.dto.request.EmployeeUpdateRequest;
 import com.assessment.employeemanagement.dto.response.EmployeeResponse;
 import com.assessment.employeemanagement.entity.Employee;
 import com.assessment.employeemanagement.entity.EmployeeAudit;
@@ -107,7 +108,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public EmployeeResponse updateEmployee(EmployeeRequest request, Long employeeId) {
+    public EmployeeResponse updateEmployee(EmployeeUpdateRequest request, Long employeeId) {
         return transactionTemplate.execute(status -> {
             Employee employeeToBeSaved = employeeRepository.findByIdForUpdate(employeeId).
                     orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " not found"));

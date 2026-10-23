@@ -1,6 +1,7 @@
 package com.assessment.employeemanagement.controller;
 
 import com.assessment.employeemanagement.dto.request.EmployeeRequest;
+import com.assessment.employeemanagement.dto.request.EmployeeUpdateRequest;
 import com.assessment.employeemanagement.dto.response.EmployeeResponse;
 import com.assessment.employeemanagement.enums.Status;
 import com.assessment.employeemanagement.service.EmployeeService;
@@ -41,7 +42,7 @@ public class EmployeeController {
 
     @PutMapping("/update/{id}")
     @Tag(name = "PUT APIs")
-    public ResponseEntity<EmployeeResponse> updateEmployee(@Valid @RequestBody EmployeeRequest request, @PathVariable("id") Long id) {
+    public ResponseEntity<EmployeeResponse> updateEmployee(@Valid @RequestBody EmployeeUpdateRequest request, @PathVariable("id") Long id) {
         EmployeeResponse response = employeeService.updateEmployee(request, id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
@@ -63,9 +64,9 @@ public class EmployeeController {
 
     @DeleteMapping("/delete/{id}")
     @Tag(name = "DELETE APIs")
-    public ResponseEntity<EmployeeResponse> deleteEmployee(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deleteEmployee(@PathVariable("id") Long id) {
         EmployeeResponse response = employeeService.deleteEmployee(id);
-        return  ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.ok("Employee with id + " + id + " has been deleted");
     }
 
 }

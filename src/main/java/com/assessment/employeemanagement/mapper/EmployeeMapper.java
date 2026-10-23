@@ -1,6 +1,7 @@
 package com.assessment.employeemanagement.mapper;
 
 import com.assessment.employeemanagement.dto.request.EmployeeRequest;
+import com.assessment.employeemanagement.dto.request.EmployeeUpdateRequest;
 import com.assessment.employeemanagement.dto.response.EmployeeResponse;
 import com.assessment.employeemanagement.entity.Employee;
 import org.mapstruct.Mapper;
@@ -17,6 +18,7 @@ public interface EmployeeMapper {
 
     EmployeeResponse toResponse(Employee employee);
 
-    void updateEmployee(EmployeeRequest request, @MappingTarget Employee employee);
+    void updateEmployee(EmployeeUpdateRequest request, @MappingTarget Employee employee
+    );
 
 }

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.*;
 public record EmployeeRequest(@NotBlank(message = "Name is mandatory") String name,
                               @Email(message = "Invalid Email") @NotBlank(message = "Email is mandatory") String email,
                               @NotBlank(message = "Department is mandatory") String department,
-                              @NotBlank(message = "Phone number is mandatory") String phoneNumber,
+                              @Pattern(regexp = "^[0-9]{10}$") @NotBlank(message = "Phone number is mandatory") String phoneNumber,
                               @NotNull(message = "Salary is mandatory") @Positive(message = "Salary must be greater than zero") Double salary,
                               @Min(value = 18, message = "Age must be at least 18") Integer age,
                               Status status) {
