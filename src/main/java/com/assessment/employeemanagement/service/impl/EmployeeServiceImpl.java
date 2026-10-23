@@ -52,6 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             log.info("Employee with phoneNumber {} already exists", request.email());
             throw new PhoneNumberExistException("Phone Number already exists '" +  request.phoneNumber() + "'");
         }
+
         Employee employeeToBeSaved = employeeBuilder.name(request.name())
                 .email(request.email())
                 .phoneNumber(request.phoneNumber())
@@ -111,10 +112,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeResponse updateEmployee(EmployeeUpdateRequest request, Long employeeId) {
         return transactionTemplate.execute(status -> {
-            Employee employeeToBeSaved = employeeRepository.findByIdForUpdate(employeeId).
-                    orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " not found"));
+            Employee employeeToBeSaved = employeeRepository.findByIdForUpdate(employeeId)
+                    .orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + employeeId + " not found"));
 
-            employeeMapper.updateEmployee(request,  employeeToBeSaved);
+            employeeMapper.updateEmployee(request, employeeToBeSaved);
 
             Employee savedEmployee = employeeRepository.save(employeeToBeSaved);
 

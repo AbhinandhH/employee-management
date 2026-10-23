@@ -1,7 +1,9 @@
 package com.assessment.employeemanagement.mapper;
+import com.assessment.employeemanagement.dto.request.EmployeeRequest;
 import com.assessment.employeemanagement.dto.request.EmployeeUpdateRequest;
 import com.assessment.employeemanagement.dto.response.EmployeeResponse;
 import com.assessment.employeemanagement.entity.Employee;
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
@@ -12,8 +14,11 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 
 public interface EmployeeMapper {
 
+    Employee toEntity(EmployeeRequest request);
+
     EmployeeResponse toResponse(Employee employee);
 
-    void updateEmployee(EmployeeUpdateRequest request, @MappingTarget Employee employee);
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    void updateEmployee(EmployeeUpdateRequest request,  @MappingTarget Employee employee);
 
 }
