@@ -53,14 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new PhoneNumberExistException("Phone Number already exists '" +  request.phoneNumber() + "'");
         }
 
-        Employee employeeToBeSaved = employeeBuilder.name(request.name())
-                .email(request.email())
-                .phoneNumber(request.phoneNumber())
-                .department(request.department())
-                .salary(new BigDecimal(request.salary()))
-                .age(request.age())
-                .status(Status.ACTIVE)
-                .build();
+        Employee employeeToBeSaved = employeeMapper.toEntity(request);
 
         return transactionTemplate.execute(status -> {
             Employee savedEmployee = employeeRepository.save(employeeToBeSaved);
