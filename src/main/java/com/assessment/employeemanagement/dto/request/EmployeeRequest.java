@@ -8,7 +8,7 @@ public record EmployeeRequest(@NotBlank(message = "Name is mandatory") String na
                               @NotBlank(message = "Department is mandatory") String department,
                               @Pattern(regexp = "^[0-9]{10}$") @NotBlank(message = "Phone number is mandatory") String phoneNumber,
                               @NotNull(message = "Salary is mandatory") @Positive(message = "Salary must be greater than zero") Double salary,
-                              @Min(value = 18, message = "Age must be at least 18") Integer age,
+                              @Min(value = 18, message = "Age must be at least 18") @NotNull Integer age,
                               Status status) {
     public EmployeeRequest {
         if (status == null) {
