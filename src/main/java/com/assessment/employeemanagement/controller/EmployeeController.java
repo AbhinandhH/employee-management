@@ -40,7 +40,7 @@ public class EmployeeController {
         return  ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
-    @PutMapping("/update/{id}")
+    @PatchMapping("/update/{id}")
     @Tag(name = "PUT APIs")
     public ResponseEntity<EmployeeResponse> updateEmployee(@Valid @RequestBody EmployeeUpdateRequest request, @PathVariable("id") Long id) {
         EmployeeResponse response = employeeService.updateEmployee(request, id);
