@@ -1,4 +1,5 @@
 package com.assessment.employeemanagement.mapper;
+
 import com.assessment.employeemanagement.dto.request.EmployeeRequest;
 import com.assessment.employeemanagement.dto.request.EmployeeUpdateRequest;
 import com.assessment.employeemanagement.dto.response.EmployeeResponse;
@@ -18,13 +19,14 @@ public interface EmployeeMapper {
     @Mapping(target = "name", conditionQualifiedByName = "stringCheckForUpdate")
     @Mapping(target = "email", conditionQualifiedByName = "stringCheckForUpdate")
     @Mapping(target = "phoneNumber", conditionQualifiedByName = "stringCheckForUpdate")
+    @Mapping(target = "department", conditionQualifiedByName = "stringCheckForUpdate")
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void updateEmployee(EmployeeUpdateRequest request,  @MappingTarget Employee employee);
+    void updateEmployee(EmployeeUpdateRequest request, @MappingTarget Employee employee);
 
     @Condition
     @Named("stringCheckForUpdate")
     default boolean isStringNotBlank(String stringValue) {
-        return  stringValue != null && !stringValue.isBlank();
+        return stringValue != null && !stringValue.isBlank();
     }
 
 }
